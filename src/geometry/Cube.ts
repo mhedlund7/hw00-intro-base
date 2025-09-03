@@ -16,7 +16,6 @@ class Cube extends Drawable {
     }
 
     create() {
-        const maxIndexCount = 36;
         const maxVertexCount = 8;
         this.indices = new Uint32Array([
             0, 1, 2, 
