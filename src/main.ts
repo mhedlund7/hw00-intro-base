@@ -22,6 +22,7 @@ let square: Square;
 let cube: Cube;
 let prevTesselations: number = 5;
 let prevColor: number = 0x000000;
+let time: number = 0.0;
 
 function loadScene() {
   icosphere = new Icosphere(vec3.fromValues(0, 0, 0), 1, controls.tesselations);
@@ -77,6 +78,8 @@ function main() {
     stats.begin();
     gl.viewport(0, 0, window.innerWidth, window.innerHeight);
     renderer.clear();
+    time += 0.01;
+    lambert.setTime(time);
     if(controls.tesselations != prevTesselations)
     {
       prevTesselations = controls.tesselations;
@@ -89,7 +92,7 @@ function main() {
       lambert.setGeometryColor(vec4.fromValues(((controls.color >> 16) & 0xFF) / 255, ((controls.color >> 8) & 0xFF) / 255, (controls.color & 0xFF) / 255, 1));
     }
     renderer.render(camera, lambert, [
-      // icosphere,
+      icosphere,
       // square,
       cube,
     ]);
